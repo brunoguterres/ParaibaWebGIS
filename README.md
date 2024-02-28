@@ -1,1 +1,1 @@
-# Repositório direcionado aos arquivos de desenvolvimento do WebGIS do PRH-RPB.
+# Repositório de arquivos de desenvolvimento do WebGIS do PRH-RPB.
