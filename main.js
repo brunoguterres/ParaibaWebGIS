@@ -16,6 +16,15 @@ var osmTile = new ol.layer.Tile ({
 });
 map.addLayer(osmTile);
 
+/*
+var googleSatellite = new ol.layer.Tile({
+    source: new ol.source.XYZ({
+        url: 'http://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'
+    })
+});
+map.addLayer(googleSatellite);
+*/
+
 var divisasEstaduais = new ol.layer.Tile({
     title: "Divisas Estaduais da Paraíba",
     source: new ol.source.TileWMS({
