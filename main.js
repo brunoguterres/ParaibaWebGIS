@@ -1,5 +1,5 @@
 var mapView = new ol.View ({
-    center: ol.proj.fromLonLat([-36.6, -7.2]),
+    center: ol.proj.fromLonLat([-36.8, -7.2]),
     zoom: 8.6,
 });
 
@@ -24,6 +24,7 @@ var divisasEstaduais = new ol.layer.Tile({
         serverType: 'geoserver',
         visible: true,
     }),
+    attribution: 'IBGE',
 });
 map.addLayer(divisasEstaduais);
 
