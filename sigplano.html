@@ -13,14 +13,17 @@
 <body>
     <div class="grid-container">
         <div class="header">
-            <span style="vertical-align: middle;">SIGPANO - Plano de Recursos Hídricos do Rio Paraíba</span>
+            <span style="vertical-align: middle;">SIGPLANO - Plano de Recursos Hídricos do Rio Paraíba</span>
         </div>
         <div class="left">
             <div class="toc">
-                <h3>Camadas</h3>
-                <input type="checkbox" id="osm" value="Open Street Map" checked onchange="toggleLayer(event)";>
-                <label for="osm">Open Street Map</label>
+                <h3>Basemap</h3>
+                <select id="baseMapSelector" onchange="changeBaseMap(event)">
+                    <option value="osm">Open Street Map</option>
+                    <option value="google">Google Maps</option>
+                </select>
                 <br>
+                <h3>Camadas</h3>
                 <input type="checkbox" id="divisas_estaduais" value="Divisas Estaduais da Paraíba" checked onchange="toggleLayer(event)";>
                 <label for="divisas_estaduais">Divisas Estaduais da Paraíba</label>
                 <br>

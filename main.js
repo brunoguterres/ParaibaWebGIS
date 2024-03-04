@@ -1,3 +1,27 @@
+function toggleLayer(eve) {
+    var lyrname = eve.target.value;
+    var checkedStatus = eve.target.checked;
+    var lyrList = map.getLayers();
+
+    lyrList.forEach(function(element){
+        if (lyrname == element.get('title')){
+            element.setVisible(checkedStatus);
+        }
+    });
+}
+
+function changeBaseMap(event) {
+    var selectedOption = event.target.value;
+
+    if (selectedOption === 'osm') {
+        osmTile.setVisible(true);
+        googleSatellite.setVisible(false);
+    } else if (selectedOption === 'google') {
+        osmTile.setVisible(false);
+        googleSatellite.setVisible(true);
+    }
+}
+
 var mapView = new ol.View ({
     center: ol.proj.fromLonLat([-36.2, -7.2]),
     zoom: 8.7,
@@ -11,19 +35,22 @@ var map = new ol.Map({
 var osmTile = new ol.layer.Tile ({
     title: 'Open Street Map',
     visible: true,
-    opacity: 0.6,
+    opacity: 0.7,
     source: new ol.source.OSM(),
+    visible: true,
 });
-map.addLayer(osmTile);
 
-/*
 var googleSatellite = new ol.layer.Tile({
     source: new ol.source.XYZ({
         url: 'http://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'
-    })
+    }),
+    visible: false,
+    type: 'base',
 });
+
 map.addLayer(googleSatellite);
-*/
+map.addLayer(osmTile);
+
 
 var divisasEstaduais = new ol.layer.Tile({
     title: "Divisas Estaduais da Paraíba",
@@ -33,9 +60,7 @@ var divisasEstaduais = new ol.layer.Tile({
         serverType: 'geoserver',
         visible: true,
     }),
-    attribution: 'IBGE',
 });
-map.addLayer(divisasEstaduais);
 
 var hidrografiaPrincipal = new ol.layer.Tile({
     title: "Hidrografia principal",
@@ -46,7 +71,6 @@ var hidrografiaPrincipal = new ol.layer.Tile({
         visible: true,
     }),
 });
-map.addLayer(hidrografiaPrincipal);
 
 var acudes = new ol.layer.Tile({
     title: "Açudes",
@@ -57,7 +81,6 @@ var acudes = new ol.layer.Tile({
         visible: true,
     }),
 });
-map.addLayer(acudes);
 
 var subBacias = new ol.layer.Tile({
     title: "Sub bacias do Rio Paraíba",
@@ -68,7 +91,6 @@ var subBacias = new ol.layer.Tile({
         visible: true,
     }),
 });
-map.addLayer(subBacias);
 
 var bacia = new ol.layer.Tile({
     title: "Bacia do Rio Paraíba",
@@ -79,16 +101,10 @@ var bacia = new ol.layer.Tile({
         visible: true,
     }),
 });
+
+map.addLayer(divisasEstaduais);
+map.addLayer(hidrografiaPrincipal);
+map.addLayer(acudes);
+map.addLayer(subBacias);
 map.addLayer(bacia);
 
-function toggleLayer(eve) {
-    var lyrname = eve.target.value;
-    var checkedStatus = eve.target.checked;
-    var lyrList = map.getLayers();
-
-    lyrList.forEach(function(element){
-        if (lyrname == element.get('title')){
-            element.setVisible(checkedStatus);
-        }
-    });
-}
