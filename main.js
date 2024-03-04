@@ -1,6 +1,6 @@
 var mapView = new ol.View ({
-    center: ol.proj.fromLonLat([-36.8, -7.2]),
-    zoom: 8.6,
+    center: ol.proj.fromLonLat([-36.2, -7.2]),
+    zoom: 8.7,
 });
 
 var map = new ol.Map({
@@ -11,7 +11,7 @@ var map = new ol.Map({
 var osmTile = new ol.layer.Tile ({
     title: 'Open Street Map',
     visible: true,
-    opacity: 0.8,
+    opacity: 0.6,
     source: new ol.source.OSM(),
 });
 map.addLayer(osmTile);
@@ -80,3 +80,15 @@ var bacia = new ol.layer.Tile({
     }),
 });
 map.addLayer(bacia);
+
+function toggleLayer(eve) {
+    var lyrname = eve.target.value;
+    var checkedStatus = eve.target.checked;
+    var lyrList = map.getLayers();
+
+    lyrList.forEach(function(element){
+        if (lyrname == element.get('title')){
+            element.setVisible(checkedStatus);
+        }
+    });
+}
