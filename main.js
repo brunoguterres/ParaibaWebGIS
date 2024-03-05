@@ -33,8 +33,8 @@ function changeBaseMap(event) {
 }
 
 var mapView = new ol.View ({
-    center: ol.proj.fromLonLat([-36.2, -7.3]),
-    zoom: 8.6,
+    center: ol.proj.fromLonLat([-36.8, -7.15]),
+    zoom: 8.5,
 });
 
 var map = new ol.Map({
@@ -45,7 +45,7 @@ var map = new ol.Map({
 var osmTile = new ol.layer.Tile ({
     title: 'Open Street Map',
     visible: true,
-    opacity: 0.7,
+    opacity: 0.8,
     source: new ol.source.OSM(),
     visible: true,
 });
@@ -61,6 +61,23 @@ var googleSatellite = new ol.layer.Tile({
 map.addLayer(googleSatellite);
 map.addLayer(osmTile);
 
+//OBSERVAÇÃO: É possível utilizar uma única declaração para importar várias camadas e carregar no mapa por meio de uma varíavel, utilizando o exemplo abaixo:
+/*
+var divisasEstaduais = new ol.layer.Tile({
+    title: "Divisas Estaduais da Paraíba",
+    source: new ol.source.TileWMS({
+        url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
+        params: {'LAYERS':['prh_rpb:divisas_estaduais',
+                          'prh_rpb:hidrografia_principal',
+                          'prh_rpb:acudes',
+                          'prh_rpb:sub_bacias_rpb',
+                          'prh_rpb:bacia_rpb'],
+                 'TILED':true},
+        serverType: 'geoserver',
+    }),
+    visible: true,
+});
+*/
 
 var divisasEstaduais = new ol.layer.Tile({
     title: "Divisas Estaduais da Paraíba",
@@ -69,7 +86,7 @@ var divisasEstaduais = new ol.layer.Tile({
         params: {'LAYERS':'prh_rpb:divisas_estaduais', 'TILED':true},
         serverType: 'geoserver',
     }),
-    visible: false,
+    visible: true,
 });
 
 var hidrografiaPrincipal = new ol.layer.Tile({
