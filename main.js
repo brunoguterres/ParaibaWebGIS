@@ -8,6 +8,16 @@ function toggleLayer(eve) {
             element.setVisible(checkedStatus);
         }
     });
+
+    if (targetLayer) {
+        targetLayer.setVisible(checkedStatus);
+        
+        if (checkedStatus && !map.getLayers().getArray().includes(targetLayer)) {
+            map.addLayer(targetLayer);
+        } else if (!checkedStatus && map.getLayers().getArray().includes(targetLayer)) {
+            map.removeLayer(targetLayer);
+        }
+    }
 }
 
 function changeBaseMap(event) {
@@ -23,8 +33,8 @@ function changeBaseMap(event) {
 }
 
 var mapView = new ol.View ({
-    center: ol.proj.fromLonLat([-36.2, -7.2]),
-    zoom: 8.7,
+    center: ol.proj.fromLonLat([-36.2, -7.3]),
+    zoom: 8.6,
 });
 
 var map = new ol.Map({
@@ -58,8 +68,8 @@ var divisasEstaduais = new ol.layer.Tile({
         url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
         params: {'LAYERS':'prh_rpb:divisas_estaduais', 'TILED':true},
         serverType: 'geoserver',
-        visible: true,
     }),
+    visible: false,
 });
 
 var hidrografiaPrincipal = new ol.layer.Tile({
@@ -68,8 +78,8 @@ var hidrografiaPrincipal = new ol.layer.Tile({
         url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
         params: {'LAYERS':'prh_rpb:hidrografia_principal', 'TILED':true},
         serverType: 'geoserver',
-        visible: true,
     }),
+    visible: false,
 });
 
 var acudes = new ol.layer.Tile({
@@ -78,8 +88,8 @@ var acudes = new ol.layer.Tile({
         url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
         params: {'LAYERS':'prh_rpb:acudes', 'TILED':true},
         serverType: 'geoserver',
-        visible: true,
     }),
+    visible: false,
 });
 
 var subBacias = new ol.layer.Tile({
@@ -88,8 +98,8 @@ var subBacias = new ol.layer.Tile({
         url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
         params: {'LAYERS':'prh_rpb:sub_bacias_rpb', 'TILED':true},
         serverType: 'geoserver',
-        visible: true,
     }),
+    visible: false,
 });
 
 var bacia = new ol.layer.Tile({
@@ -98,8 +108,8 @@ var bacia = new ol.layer.Tile({
         url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
         params: {'LAYERS':'prh_rpb:bacia_rpb', 'TILED':true},
         serverType: 'geoserver',
-        visible: true,
     }),
+    visible: false,
 });
 
 map.addLayer(divisasEstaduais);
