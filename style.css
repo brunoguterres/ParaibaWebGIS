@@ -63,3 +63,17 @@ header {
 .right {
     padding: 0;
 }
+
+.construction-content {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.construction-content p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.construction-content img {
+    max-width: 100%;
+}
