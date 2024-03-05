@@ -86,7 +86,7 @@ var divisasEstaduais = new ol.layer.Tile({
         params: {'LAYERS':'prh_rpb:divisas_estaduais', 'TILED':true},
         serverType: 'geoserver',
     }),
-    visible: true,
+    visible: false,
 });
 
 var hidrografiaPrincipal = new ol.layer.Tile({
