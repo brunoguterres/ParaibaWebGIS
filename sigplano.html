@@ -1,15 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebGIS - OpenLayers</title>
-    <link rel="stylesheet" href="resources/ol.css">
-    <link rel="stylesheet" href="main.css">
+    <title>WebGIS - SIGPLANO</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="package/ol.css">
 </head>
+
 <body>
-    <div id="map"></div>
-    <script src="resources/ol.js"></script>
+    <header>
+        <h1 class="title">SIGPLANO - Plano de Recursos Hídricos do Rio Paraíba</h1>
+        <nav class="menu">
+            <ul>
+                <li><a href="sigplano.html">Mapa</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+                <li><a href="informacoes.html">Informações</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="grid-container">
+        <div class="left">
+            <div class="toc">
+                <h3>Basemap</h3>
+                <select id="baseMapSelector" onchange="changeBaseMap(event)">
+                    <option value="osm">Open Street Map</option>
+                    <option value="google">Google Maps</option>
+                </select>
+                <br>
+                <h3>Camadas</h3>
+                <input type="checkbox" id="divisas_estaduais" value="Divisas Estaduais da Paraíba" onchange="toggleLayer(event)">
+                <label for="divisas_estaduais">Divisas Estaduais da Paraíba</label>
+                <br>
+                <input type="checkbox" id="hidrografia_principal" value="Hidrografia principal" onchange="toggleLayer(event)">
+                <label for="hidrografia_principal">Hidrografia principal</label>
+                <br>
+                <input type="checkbox" id="acudes" value="Açudes" onchange="toggleLayer(event)">
+                <label for="acudes">Açudes</label>
+                <br>
+                <input type="checkbox" id="sub_bacia" value="Sub bacias do Rio Paraíba" onchange="toggleLayer(event)">
+                <label for="sub_bacia">Sub bacias do Rio Paraíba</label>
+                <br>
+                <input type="checkbox" id="bacia" value="Bacia do Rio Paraíba" onchange="toggleLayer(event)">
+                <label for="bacia">Bacia do Rio Paraíba</label>
+                <br>
+            </div>
+        </div>
+        <div class="right">
+            <div id="map"></div>
+        </div>
+    </div>
+
+    <script src="package/dist/ol.js"></script>
+    <script src="layerswitcher/ol-layerswitcher.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>
