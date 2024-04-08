@@ -63,24 +63,6 @@ var googleSatellite = new ol.layer.Tile({
 map.addLayer(googleSatellite);
 map.addLayer(osmTile);
 
-//OBSERVAÇÃO: É possível utilizar uma única declaração para importar várias camadas e carregar no mapa por meio de uma varíavel, utilizando o exemplo abaixo:
-/*
-var divisasEstaduais = new ol.layer.Tile({
-    title: "Divisas Estaduais da Paraíba",
-    source: new ol.source.TileWMS({
-        url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
-        params: {'LAYERS':['prh_rpb:divisas_estaduais',
-                          'prh_rpb:hidrografia_principal',
-                          'prh_rpb:acudes',
-                          'prh_rpb:sub_bacias_rpb',
-                          'prh_rpb:bacia_rpb'],
-                 'TILED':true},
-        serverType: 'geoserver',
-    }),
-    visible: true,
-});
-*/
-
 var divisasEstaduais = new ol.layer.Tile({
     title: "Divisas Estaduais da Paraíba",
     source: new ol.source.TileWMS({
@@ -92,7 +74,7 @@ var divisasEstaduais = new ol.layer.Tile({
 });
 
 var hidrografiaPrincipal = new ol.layer.Tile({
-    title: "Hidrografia principal",
+    title: url_geoserver,
     source: new ol.source.TileWMS({
         url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
         params: {'LAYERS':'prh_rpb:hidrografia_principal', 'TILED':true},
@@ -102,17 +84,17 @@ var hidrografiaPrincipal = new ol.layer.Tile({
 });
 
 var acudes = new ol.layer.Tile({
-    title: "Açudes",
+    title: url_geoserver,
     source: new ol.source.TileWMS({
         url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
-        params: {'LAYERS':'prh_rpb:acudes', 'TILED':true},
+        params: {'LAYERS':'prh_rpb:acudes_pb', 'TILED':true},
         serverType: 'geoserver',
     }),
     visible: false,
 });
 
 var subBacias = new ol.layer.Tile({
-    title: "Sub bacias do Rio Paraíba",
+    title: url_geoserver,
     source: new ol.source.TileWMS({
         url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
         params: {'LAYERS':'prh_rpb:sub_bacias_rpb', 'TILED':true},
@@ -122,7 +104,7 @@ var subBacias = new ol.layer.Tile({
 });
 
 var bacia = new ol.layer.Tile({
-    title: "Bacia do Rio Paraíba",
+    title: url_geoserver,
     source: new ol.source.TileWMS({
         url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
         params: {'LAYERS':'prh_rpb:bacia_rpb', 'TILED':true},
