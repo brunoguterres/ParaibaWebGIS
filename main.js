@@ -84,7 +84,7 @@ var divisasEstaduais = new ol.layer.Tile({
 var divisasEstaduais = new ol.layer.Tile({
     title: "Divisas Estaduais da Paraíba",
     source: new ol.source.TileWMS({
-        url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
+        url: url_geoserver,
         params: {'LAYERS':'prh_rpb:divisas_estaduais', 'TILED':true},
         serverType: 'geoserver',
     }),
