@@ -46,8 +46,8 @@ function changeBaseMap(event) {
 }
 
 var mapView = new ol.View ({
-    center: ol.proj.fromLonLat([-36.8, -7.15]),
-    zoom: 8.5,
+    center: ol.proj.fromLonLat([-36, -7.6]),
+    zoom: 9,
 });
 
 var map = new ol.Map({
