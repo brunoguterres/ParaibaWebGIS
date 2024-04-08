@@ -7,18 +7,12 @@
     <title>WebGIS - SIGPLANO</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="package/ol.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <h1 class="title">SIGPLANO - Plano de Recursos Hídricos do Rio Paraíba</h1>
-        <nav class="menu">
-            <ul>
-                <li><a href="sigplano.html">Mapa</a></li>
-                <li><a href="downloads.html">Downloads</a></li>
-                <li><a href="informacoes.html">Informações</a></li>
-            </ul>
-        </nav>
+        <img src="assets/imagem_header_site.png" alt="imagem de cabeçalho (site)" class="imagem-cabecalho">
     </header>
 
     <div class="grid-container">
@@ -30,21 +24,22 @@
                     <option value="google">Google Maps</option>
                 </select>
                 <br>
+                <br>
                 <h3>Camadas</h3>
-                <input type="checkbox" id="divisas_estaduais" value="Divisas Estaduais da Paraíba" onchange="toggleLayer(event)">
-                <label for="divisas_estaduais">Divisas Estaduais da Paraíba</label>
+                <input type="checkbox" id="Bacia do Rio Paraíba" value="Bacia do Rio Paraíba" onchange="toggleLayer(event)">
+                <label for="Bacia do Rio Paraíba">Bacia do Rio Paraíba</label>
                 <br>
-                <input type="checkbox" id="hidrografia_principal" value="Hidrografia principal" onchange="toggleLayer(event)">
-                <label for="hidrografia_principal">Hidrografia principal</label>
+                <input type="checkbox" id="Sub bacias do Rio Paraíba" value="Sub bacias do Rio Paraíba" onchange="toggleLayer(event)">
+                <label for="Sub bacias do Rio Paraíba">Sub bacias do Rio Paraíba</label>
                 <br>
-                <input type="checkbox" id="acudes" value="Açudes" onchange="toggleLayer(event)">
-                <label for="acudes">Açudes</label>
+                <input type="checkbox" id="Hidrografia principal" value="Hidrografia principal" onchange="toggleLayer(event)">
+                <label for="Hidrografia principal">Hidrografia principal</label>
                 <br>
-                <input type="checkbox" id="sub_bacia" value="Sub bacias do Rio Paraíba" onchange="toggleLayer(event)">
-                <label for="sub_bacia">Sub bacias do Rio Paraíba</label>
+                <input type="checkbox" id="Açudes" value="Açudes" onchange="toggleLayer(event)">
+                <label for="Açudes">Açudes</label>
                 <br>
-                <input type="checkbox" id="bacia" value="Bacia do Rio Paraíba" onchange="toggleLayer(event)">
-                <label for="bacia">Bacia do Rio Paraíba</label>
+                <input type="checkbox" id="Divisas Estaduais da Paraíba" value="Divisas Estaduais da Paraíba" onchange="toggleLayer(event)">
+                <label for="Divisas Estaduais da Paraíba">Divisas Estaduais da Paraíba</label>
                 <br>
             </div>
         </div>

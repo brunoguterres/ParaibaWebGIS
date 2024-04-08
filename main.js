@@ -1,23 +1,36 @@
+var targetLayer = null;
+
+function updateCheckboxState(layer) {
+    var checkbox = document.getElementById(layer.get('title'));
+    if (checkbox) {
+        checkbox.checked = layer.getVisible();
+    }
+}
+
 function toggleLayer(eve) {
     var lyrname = eve.target.value;
     var checkedStatus = eve.target.checked;
     var lyrList = map.getLayers();
 
     lyrList.forEach(function(element){
-        if (lyrname == element.get('title')){
+        if (lyrname === element.get('title')){
             element.setVisible(checkedStatus);
+            updateCheckboxState(element);
         }
     });
+}
 
-    if (targetLayer) {
-        targetLayer.setVisible(checkedStatus);
-        
-        if (checkedStatus && !map.getLayers().getArray().includes(targetLayer)) {
-            map.addLayer(targetLayer);
-        } else if (!checkedStatus && map.getLayers().getArray().includes(targetLayer)) {
-            map.removeLayer(targetLayer);
+function initializeCheckboxes() {
+    var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(function(checkbox) {
+        var layerName = checkbox.value;
+        var layer = map.getLayers().getArray().find(function(element) {
+            return element.get('title') === layerName;
+        });
+        if (layer) {
+            checkbox.checked = layer.getVisible();
         }
-    }
+    });
 }
 
 function changeBaseMap(event) {
@@ -32,8 +45,6 @@ function changeBaseMap(event) {
     }
 }
 
-var url_geoserver = 'http://servidor.hidrogis.com.br:8080/geoserver/prh_rpb/wms'
-
 var mapView = new ol.View ({
     center: ol.proj.fromLonLat([-36.8, -7.15]),
     zoom: 8.5,
@@ -44,12 +55,17 @@ var map = new ol.Map({
     view: mapView,
 });
 
+// Adicione um evento 'postrender' à visualização do mapa
+map.getView().on('postrender', function() {
+    // Initialize os checkboxes apenas após o mapa e as camadas terem sido completamente carregados
+    initializeCheckboxes();
+});
+
 var osmTile = new ol.layer.Tile ({
     title: 'Open Street Map',
     visible: true,
     opacity: 0.8,
     source: new ol.source.OSM(),
-    visible: true,
 });
 
 var googleSatellite = new ol.layer.Tile({
@@ -63,6 +79,8 @@ var googleSatellite = new ol.layer.Tile({
 map.addLayer(googleSatellite);
 map.addLayer(osmTile);
 
+var url_geoserver = 'http://servidor.hidrogis.com.br:8080/geoserver/prh_rpb/wms'
+
 var divisasEstaduais = new ol.layer.Tile({
     title: "Divisas Estaduais da Paraíba",
     source: new ol.source.TileWMS({
@@ -70,47 +88,47 @@ var divisasEstaduais = new ol.layer.Tile({
         params: {'LAYERS':'prh_rpb:divisas_estaduais', 'TILED':true},
         serverType: 'geoserver',
     }),
-    visible: false,
+    visible: true,
 });
 
 var hidrografiaPrincipal = new ol.layer.Tile({
-    title: url_geoserver,
+    title: "Hidrografia principal",
     source: new ol.source.TileWMS({
-        url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
+        url: url_geoserver,
         params: {'LAYERS':'prh_rpb:hidrografia_principal', 'TILED':true},
         serverType: 'geoserver',
     }),
-    visible: false,
+    visible: true,
 });
 
 var acudes = new ol.layer.Tile({
-    title: url_geoserver,
+    title: "Açudes",
     source: new ol.source.TileWMS({
-        url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
+        url: url_geoserver,
         params: {'LAYERS':'prh_rpb:acudes_pb', 'TILED':true},
         serverType: 'geoserver',
     }),
-    visible: false,
+    visible: true,
 });
 
 var subBacias = new ol.layer.Tile({
-    title: url_geoserver,
+    title: "Sub bacias do Rio Paraíba",
     source: new ol.source.TileWMS({
-        url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
+        url: url_geoserver,
         params: {'LAYERS':'prh_rpb:sub_bacias_rpb', 'TILED':true},
         serverType: 'geoserver',
     }),
-    visible: false,
+    visible: true,
 });
 
 var bacia = new ol.layer.Tile({
-    title: url_geoserver,
+    title: "Bacia do Rio Paraíba",
     source: new ol.source.TileWMS({
-        url: 'http://10.5.3.18:8080/geoserver/prh_rpb/wms',
+        url: url_geoserver,
         params: {'LAYERS':'prh_rpb:bacia_rpb', 'TILED':true},
         serverType: 'geoserver',
     }),
-    visible: false,
+    visible: true,
 });
 
 map.addLayer(divisasEstaduais);
@@ -119,3 +137,4 @@ map.addLayer(acudes);
 map.addLayer(subBacias);
 map.addLayer(bacia);
 
+initializeCheckboxes();
