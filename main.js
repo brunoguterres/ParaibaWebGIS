@@ -79,7 +79,7 @@ var googleSatellite = new ol.layer.Tile({
 map.addLayer(googleSatellite);
 map.addLayer(osmTile);
 
-var url_geoserver = 'http://servidor.hidrogis.com.br:8080/geoserver/prh_rpb/wms'
+var url_geoserver = 'https://geoserver.planorioparaiba.com.br/geoserver/prh_rpb/wms'
 
 var divisasEstaduais = new ol.layer.Tile({
     title: "Divisas Estaduais da Paraíba",
